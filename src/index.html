@@ -80,7 +80,7 @@
               <th ng-repeat='title in titles'>{{title}}</th>
             </thead>
             <tbody>
-              <tr ng-repeat="(key, val) in strings">
+              <tr ng-repeat="(key, val) in searchString">
                 <td>{{ key }}</td>
                 <td ng-repeat-start='i in length' ng-if='val[i]'><i class="fa fa-check" aria-hidden="true"></i></td><td ng-repeat-end ng-if='!val[i]'>
                 </td>

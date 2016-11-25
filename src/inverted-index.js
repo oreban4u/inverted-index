@@ -63,15 +63,19 @@ class Index {
 	}
 	
 	searchIndex(terms){
-		let result = []
+		let result = {}
 		terms = terms.toLowerCase();
 		terms = terms.split(' ');
 		console.log(terms);
 		for (let sItem in terms){
 			if (this.indexes[terms[sItem]] !== undefined){
-				result.push([sItem, this.indexes[terms[sItem]]])
+				result[terms[sItem]] = this.indexes[terms[sItem]]
+			}
+			else {
+				result[terms[sItem]] = {0:false}
 			}
 		}
+		return result;
 	}
 	
 }

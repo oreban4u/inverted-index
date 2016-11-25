@@ -4,7 +4,8 @@ app.controller("testangular", function ($scope){
 	
 	$scope.getter = function() {
 		$scope.array = $scope.index.createIndex($scope.book);
-		$scope.showIndex = true; 
+		$scope.showIndex = true;
+		$scope.showSearch = false;
 		console.log($scope.array);
 		//alert('helloo');
 	};
@@ -46,6 +47,10 @@ app.controller("testangular", function ($scope){
 	$scope.searchy = () => {
 		qstring = $scope.sString;
 		console.log(qstring);
+		$scope.searchString = $scope.index.searchIndex(qstring);
+		console.log($scope.searchString)
+		$scope.showIndex = false;
+		$scope.showSearch = true;
 	}
 
 });
