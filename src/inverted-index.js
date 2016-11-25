@@ -1,26 +1,13 @@
 class Index {
 	
-	constructor(bookNo){
-		this.bookNo =bookNo;
-		this.indexes = {}
-		this.book = [
-					  {
-					    "title": "Alice in Wonderland",
-					    "text": "Alice falls into a rabbit hole and enters a world full of imagination."
-					  },
-					
-					  {
-					    "title": "The Lord of the Rings: The Fellowship of the Ring.",
-					    "text": "An unusual alliance of man, elf, dwarf, wizard and hobbit seek to destroy a powerful ring."
-					  }
-					];
+	constructor(){
 		
-		
+		this.indexes = {};
+		this.book = [];
+					  
 	}
-	
-	//createIndex(filepath){
-	createIndex(){
-		
+	createIndex(book){
+		this.book = book;
 		for (let i=0; i< this.book.length; i++){
 			//let text = /\S+\s\S+/[Symbol.match](this.book[i].text);
 			
@@ -89,7 +76,7 @@ class Index {
 	
 }
 
-var no1 = new Index('upload1');
+// var no1 = new Index('upload1');
 
 //console.log(no1.testFunction());
 // console.log(no1.createIndex());

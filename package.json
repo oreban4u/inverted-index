@@ -1,0 +1,28 @@
+{
+  "name": "inverted-index",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "dependencies": {
+    "express": "^4.14.0",
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.2",
+    "gulp": "^3.9.1",
+    "gulp-watch": "^4.3.11"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-obanwo/inverted-index.git"
+  },
+  "author": "Oreoluwa Banwo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-obanwo/inverted-index/issues"
+  },
+  "homepage": "https://github.com/andela-obanwo/inverted-index#readme"
+}
