@@ -3,7 +3,8 @@ var gulp = require('gulp'),
   watch = require('gulp-watch'),
   browserSync = require('browser-sync'),
   mainSync = browserSync.create(),
-  testSync = browserSync.create();
+  testSync = browserSync.create(),
+  run = require('gulp-run');
   
 
 
@@ -33,6 +34,10 @@ gulp.task('serveTest', function() {
     port:8888,
     ui: false
   })
+});
+
+gulp.task('test', () => {
+  run('node_modules/karma/bin/karma start karma.conf.js --single-run').exec();
 });
 
 
