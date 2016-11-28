@@ -9,7 +9,7 @@ var gulp = require('gulp'),
 
 gulp.task('watch', function() {
   gulp.watch(['js/**/*.js', 'src/**/*.js', 'src/**/*.css', 'src/**/*.html', 'gulpfile.js'], mainSync.reload);
-  gulp.watch('jasmine/spec/*.js', testSync.reload);
+  gulp.watch(['jasmine/**/*.js', 'src/**/*.js'], testSync.reload);
 	
 });
 

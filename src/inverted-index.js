@@ -1,65 +1,106 @@
 class Index {
 	
 	constructor(){
-		
 		this.indexes = {};
 		this.book = [];
-					  
+		this.vbook = []		  
 	}
 	createIndex(book){
 		this.book = book;
-		for (let i=0; i< this.book.length; i++){
-			let titleIndex = this.book[i].title.match(/\w+/g);
-			let textIndex = this.book[i].text.match(/\w+/g);
-			
-			for (let item in titleIndex){
-				titleIndex[item] = /[A-Za-z]+/[Symbol.match](titleIndex[item])[0];
-				titleIndex[item] = titleIndex[item].toLowerCase();
-				if (this.indexes[titleIndex[item]] === undefined){
-					this.indexes[titleIndex[item]] = {}
-					this.indexes[titleIndex[item]][i] = true;
-				}
-				else{
-					this.indexes[titleIndex[item]][i] = true;
-				}
-			}
-			for (let item in textIndex){
-				textIndex[item] = /[A-Za-z]+/[Symbol.match](textIndex[item])[0];
-				textIndex[item] = textIndex[item].toLowerCase();
-				if (this.indexes[textIndex[item]] === undefined){
-					this.indexes[textIndex[item]] = {};
-					this.indexes[textIndex[item]][i] = true;
-				}
-				else{
-					this.indexes[textIndex[item]][i] = true;
-				}
-			}
-		}
-		return this.indexes;
+		// if(this.book === ''){
+			// alert('Invalid file') 
+			// return "Empty File"
+		// }
+	
 		
+		for (let i=0; i < this.book.length; i++) {
+			let titleIndex = this.book[i].title.toLowerCase().match(/\w+/g);
+			let textIndex = this.book[i].text.toLowerCase().match(/\w+/g);
+			
+					for (let title = 0; title < titleIndex.length; title++){
+			  if (this.indexes[titleIndex[title]] === undefined) {
+					this.indexes[titleIndex[title]] = {};
+					this.indexes[titleIndex[title]][i] = true;
+				}
+			
+				else {
+					this.indexes[titleIndex[title]][i] = true;
+				}
+			}
+
+		
+		for (let text = 0; text < textIndex.length; text++){
+			  if (this.indexes[textIndex[text]] === undefined) {
+					this.indexes[textIndex[text]] = {};
+					this.indexes[textIndex[text]][i] = true;
+				}
+			
+				else {
+					this.indexes[textIndex[text]][i] = true;
+				}
+			}
+
+		}
+		console.log(this.indexes)
+		return this.indexes;
 	}
+		
 	
 	getIndex(){
 		return this.indexes;
 	}
 	
 	searchIndex(terms){
+		if (typeof terms === 'array'){
+			terms = terms.join()
+		}
+
 		let result = {}
 		terms = terms.toLowerCase();
-		// terms = terms.split(',');
-		// terms = terms
 		terms = terms.match(/\w+/g);
 		console.log(terms);
-		for (let sItem in terms){
-			// terms[sItem] = /[A-Za-z]+/[Symbol.match](terms[sItem])[0]
-			if (this.indexes[terms[sItem]] !== undefined){
-				result[terms[sItem]] = this.indexes[terms[sItem]]
+		terms.forEach((sItem) => {
+			if (this.indexes[sItem] !== undefined){
+			result[sItem] = this.indexes[sItem]
 			}
 			else {
-				result[terms[sItem]] = {0:false}
+				result[sItem] = {0:false}
+			}
+		})
+		return result;
+	}
+
+	validateFile(file){
+		console.log(file)
+		try{
+			if (file === "") throw "Empty File"
+			this.vbook = JSON.parse(file);
+			// console.log(`second attempt ${book[0]}`)
+
+			let check
+			this.vbook.forEach((item) => {
+				console.log(item.text);
+				if (item.text === undefined || item.title === undefined){
+					check = true;
+				}
+			})
+
+			if (check) throw "Invalid Content";
+			
+			return [true, "success"];
+		}
+
+		catch(err){
+			if (err === 'Empty File'){
+				return [false, "Empty File Please Upload a Valid Json File"];
+			}
+			else if (err.name === 'SyntaxError'){
+				return [false, "Invalid JSON file"];
+			}
+			else if (err === 'Invalid Content'){
+				return [false, err];
 			}
 		}
-		return result;
 	}
 	
 }
