@@ -1,1 +1,2 @@
 # inverted-index
+[![Coverage Status](https://coveralls.io/repos/github/andela-obanwo/inverted-index/badge.svg?branch=working_dir)](https://coveralls.io/github/andela-obanwo/inverted-index?branch=working_dir)

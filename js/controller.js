@@ -9,7 +9,7 @@ app.controller("testangular", function ($scope){
 			$scope.showIndex = true;
 			$scope.showSearch = false;
 			console.log($scope.array);
-			//alert('helloo');
+			
 		}
 		else{
 			$scope.showIndex = false;
@@ -29,7 +29,6 @@ app.controller("testangular", function ($scope){
 		let arr = []
 		for (let i = 0; i < n; i++) {
 			arr.push('Book '+ i);
-			// console.log (arr);
 
 		}
 		return arr;
@@ -40,7 +39,6 @@ app.controller("testangular", function ($scope){
 		let file = document.getElementById('upload').files[0]
 		console.log(file);
 	  let reader = new FileReader();
-		// var file = result.target.files[0];
 		reader.readAsText(file);
 
 		reader.onload = (event) => { 
@@ -58,19 +56,6 @@ app.controller("testangular", function ($scope){
 		  else{
 		  	alert(fileValidation[1])
 		  }
-
-
-		 //  try{
-			//   $scope.book = JSON.parse(event.target.result);
-			//   validFile = true;
-			  
-			// }
-			// catch(err){
-			// 	// $scope.book = '';
-			// 	console.log(`book is ${$scope.book}full`);
-			// 	validFile = false;
-			// 	alert("Invalid File Please Upload a JSON file");
-			// }
 
 	 	}
 	};
