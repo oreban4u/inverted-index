@@ -1,1 +1,1 @@
-var app = angular.module('InvertedIndex', [])
+const app = angular.module('InvertedIndex', []);

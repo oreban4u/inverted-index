@@ -1,72 +1,56 @@
-app.controller("testangular", function ($scope){
-	
-	$scope.showIndex = false;	
-	let validFile = false;
-	
-	$scope.getter = () => {
-		if (validFile) {
-			$scope.array = $scope.index.createIndex($scope.index.vbook);
-			$scope.showIndex = true;
-			$scope.showSearch = false;
-			console.log($scope.array);
-			
-		}
-		else{
-			$scope.showIndex = false;
-			$scope.showSearch = false;
-			console.log($scope.array);
-		}
-	};
+app.controller('testangular', ($scope) => {
+  $scope.showIndex = false;
+  let validFile = false;
 
-	numToArray = (n) => {
-		var arr = [];
-		for (var i = 0; i < n; i++) {
-			arr.push(i);
-		}
-		return arr;
-	}
-	titlesList = (n) => {
-		let arr = []
-		for (let i = 0; i < n; i++) {
-			arr.push('Book '+ i);
+  $scope.getter = () => {
+    if (validFile) {
+      $scope.array = $scope.index.createIndex($scope.index.vbook);
+      $scope.showIndex = true;
+      $scope.showSearch = false;
+    } else {
+      $scope.showIndex = false;
+      $scope.showSearch = false;
+    }
+  };
 
-		}
-		return arr;
-	};
+  const numToArray = (n) => {
+    const arr = [];
+    for (let i = 0; i < n; i += 1) {
+      arr.push(i);
+    }
+    return arr;
+  };
+  const titlesList = (n) => {
+    const arr = [];
+    for (let i = 0; i < n; i += 1) {
+      arr.push(`Book ${i}`);
+    }
+    return arr;
+  };
 
-	$scope.uploader = () => {	
-		$scope.index = new Index();
-		let file = document.getElementById('upload').files[0]
-		console.log(file);
-	  let reader = new FileReader();
-		reader.readAsText(file);
+  $scope.uploader = () => {
+    $scope.index = new Index();
+    const file = document.getElementById('upload').files[0];
+    const reader = new FileReader();
+    reader.readAsText(file);
 
-		reader.onload = (event) => { 
-		  console.log(event.target.result);
-		  $scope.book = (event.target.result)
+    reader.onload = (event) => {
+      $scope.book = (event.target.result);
+      const fileValidation = $scope.index.validateFile($scope.book);
+      validFile = fileValidation[0];
+      if (validFile) {
+        $scope.titles = titlesList($scope.index.vbook.length);
+        $scope.length = numToArray($scope.index.vbook.length);
+      } else {
+        alert(fileValidation[1]);
+      }
+    };
+  };
 
-		  let fileValidation = $scope.index.validateFile($scope.book)
-		  validFile = fileValidation[0];
-		  console.log(`valid file logging ${validFile}`)
-		  if (validFile) {
-		  	$scope.titles = titlesList($scope.index.vbook.length);
-			  $scope.length = numToArray($scope.index.vbook.length);
-			  console.log($scope.length);
-		  }
-		  else{
-		  	alert(fileValidation[1])
-		  }
-
-	 	}
-	};
-
-	$scope.searchy = () => {
-		qstring = $scope.sString;
-		console.log(qstring);
-		$scope.searchString = $scope.index.searchIndex(qstring);
-		console.log($scope.searchString)
-		$scope.showIndex = false;
-		$scope.showSearch = true;
-	}
-
+  $scope.searchy = () => {
+    const qstring = $scope.sString;
+    $scope.searchString = $scope.index.searchIndex(qstring);
+    $scope.showIndex = false;
+    $scope.showSearch = true;
+  };
 });
