@@ -10,6 +10,7 @@ app.controller('testangular', ($scope) => {
     } else {
       $scope.showIndex = false;
       $scope.showSearch = false;
+      alert('No file / Invalid file uploaded')
     }
   };
 
@@ -49,9 +50,13 @@ app.controller('testangular', ($scope) => {
 
   $scope.searchy = () => {
     const qstring = $scope.sString;
-    $scope.searchString = $scope.index.searchIndex(qstring);
-    $scope.showIndex = false;
-    $scope.showSearch = true;
+    if (qstring !== undefined) {
+      $scope.searchString = $scope.index.searchIndex(qstring);
+      $scope.showIndex = false;
+      $scope.showSearch = true;
+    } else {
+      alert('No Text Entered');
+    }
   };
 
   $scope.clearSearch = () => {

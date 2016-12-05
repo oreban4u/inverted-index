@@ -3,6 +3,7 @@
 const emptyFile = require('../empty.json');
 const wrongKeyBook = require('../wrongstructure.json');
 const validFile = require('../books.json');
+const wrongFile = require('../../package.json')
 
 const newInstance = new Index();
 
@@ -19,6 +20,8 @@ describe('Read Book Data', () => {
   });
   it('Should return Invalid Content for wrongly structured valid file', () => {
     expect(newInstance.validateFile(JSON.stringify(wrongKeyBook))[1])
+    .toEqual('Invalid Content');
+    expect(newInstance.validateFile(JSON.stringify(wrongFile))[1])
     .toEqual('Invalid Content');
   });
 });

@@ -101,6 +101,7 @@ class Index {
       } else if (err === 'Invalid Content') {
         return [false, err];
       }
+      return [false, 'Invalid Content'];
     }
   }
 }

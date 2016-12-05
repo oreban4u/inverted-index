@@ -19,6 +19,7 @@ module.exports=""
 const emptyFile = require('../empty.json');
 const wrongKeyBook = require('../wrongstructure.json');
 const validFile = require('../books.json');
+const wrongFile = require('../../package.json')
 
 const newInstance = new Index();
 
@@ -35,6 +36,8 @@ describe('Read Book Data', () => {
   });
   it('Should return Invalid Content for wrongly structured valid file', () => {
     expect(newInstance.validateFile(JSON.stringify(wrongKeyBook))[1])
+    .toEqual('Invalid Content');
+    expect(newInstance.validateFile(JSON.stringify(wrongFile))[1])
     .toEqual('Invalid Content');
   });
 });
@@ -62,7 +65,7 @@ describe('Test Search', () => {
   });
 });
 
-},{"../books.json":1,"../empty.json":2,"../wrongstructure.json":4}],4:[function(require,module,exports){
+},{"../../package.json":5,"../books.json":1,"../empty.json":2,"../wrongstructure.json":4}],4:[function(require,module,exports){
 module.exports=[
   {
     "texts":"teesasdfasfd dsafdf",
@@ -72,5 +75,75 @@ module.exports=[
     "text":"line up of our young detectives",
     "title": "Secret Love child"}
 ]
+
+},{}],5:[function(require,module,exports){
+module.exports={
+  "name": "inverted-index",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "dependencies": {
+    "browser-sync": "^2.18.2",
+    "eslint-plugin-import": "^2.2.0",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-run": "^1.7.1",
+    "gulp-watch": "^4.3.11",
+    "browserify": "^3.46.1",
+    "coveralls": "^2.11.15",
+    "eslint": "^3.11.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.7.1",
+    "jasmine": "^2.5.2",
+    "jasmine-core": "^2.5.2",
+    "jasmine-node": "^1.14.5",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-coveralls": "^1.1.2",
+    "karma-jasmine": "^1.0.2",
+    "karma-spec-as-html-reporter": "0.0.3",
+    "karma-verbose-reporter": "0.0.3"
+  },
+  "devDependencies": {
+    "browserify": "^3.46.1",
+    "coveralls": "^2.11.15",
+    "eslint": "^3.11.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.7.1",
+    "jasmine": "^2.5.2",
+    "jasmine-core": "^2.5.2",
+    "jasmine-node": "^1.14.5",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-coveralls": "^1.1.2",
+    "karma-jasmine": "^1.0.2",
+    "karma-spec-as-html-reporter": "0.0.3",
+    "karma-verbose-reporter": "0.0.3"
+  },
+  "scripts": {
+    "start": "gulp serve",
+    "test": "karma start karma.conf.js --single-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-obanwo/inverted-index.git"
+  },
+  "author": "Oreoluwa Banwo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-obanwo/inverted-index/issues"
+  },
+  "homepage": "https://github.com/andela-obanwo/inverted-index#readme"
+}
 
 },{}]},{},[3])
