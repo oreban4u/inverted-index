@@ -12,6 +12,7 @@
 	    <!-- Optional Bootstrap theme -->
 	    <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
 	    <link rel="stylesheet" type="text/css" href="../font-awesome/css/font-awesome.min.css">
+      <link rel='stylesheet' type="text/css" href="./src/css/style.css">
 
 
 		<script type="text/javascript" src="./js/angular.min.js"></script>
@@ -21,71 +22,97 @@
 
 	</head>
 	<body ng-controller="testangular">
+    <div class="container">
+      <header>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
 
-    <div class='container'><nav class="navbar navbar-inverse"></nav></div>
-		<div class="container">
-    	<div class="row">
-    		<div class='col-md-4'></div>
-    		<div class='col-md-8'></div>
-    	</div>
-    	<div class="row">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">Inverted Index</a>
+            </div>
+
+          </div>
+        </nav>
+      </header>
+    </div>
+
+    <div class='container'>
+      <div class="well">
+        <div class="text-center center">
+
+          <label class="btn btn-default btn-file">
+          	<input type="file" id="upload" accept=".json" multiple/>
+          </label>
+          <button class="btn btn-default" ng-click = "uploader()">Upload File</button>
+          <input class="btn btn-default" type="button" ng-click="getter()" value='Create Index'>
+
+        </div>
+      </div>
+      <div class='container'>
+        <div class='row'>
         <div class='col-md-4'>
-
-        <div class ="row">
-        <label class="btn btn-default btn-file">
-        	<input type="file" id="upload" accept=".json" multiple/>
-        <button class="btn btn-default" ng-click = "uploader()">Upload File</button>
-        </label>
-      </div>
-      <div class ="row">
-            <input class="btn btn-default" type="button" ng-click="getter()" value='Create Index'>
-      </div>
-      <div class='row'>
-            <input type="text" id="search" ng-model="sString">
-            <button class="btn btn-default" ng-click="searchy()">Search Index</button>
-            <button class="btn btn-default" ng-click="clearSearch()" ng-show='showSearch'>Clear Search</button>
-          <!-- </p> -->
+          <div class='well'>
+            <form class ='form-inline center'>
+              <div class="form-group">
+                <input type="text" class="form-control searchbox" id="search" ng-model="sString">
+                <button class="btn btn-default" ng-click="searchy()">Search Index</button>
+                <button class="btn btn-default" ng-click="clearSearch()" ng-show='showSearch'>Clear Search</button>
+              </div>
+            </form>
+          </div>
+          <div class='well'>
+            <!-- Displays Mini Guide on left Side -->
+            <ul>
+              <li>
+                Choose a Valid Json File
+              </li>
+              <li>
+                Click the 'Upload' button
+              </li>
+              <li>
+                Click the 'Create Index' button
+              </li>
+              <li>
+                To Search Enter your search term(s)
+              </li>
+              <li>
+                Click the 'Search' button
+              </li>
+            </ul>
+          </div>
         </div>
-     		</div>
-        <div class="col-md-8">
-
-          <table  class ='table' ng-show='showIndex'>
-            <thead>
-              <th>Word</th>
-              <th ng-repeat='title in titles'>{{title}}</th>
-            </thead>
-            <tbody>
-              <tr ng-repeat="(key, val) in array">
-                <td>{{ key }}</td>
-                <td ng-repeat-start='i in length' ng-if='val[i]'><i class="fa fa-check" aria-hidden="true"></i></td><td ng-repeat-end ng-if='!val[i]'>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table  class ='table' ng-show='showSearch'>
-            <thead>
-              <th>Word</th>
-              <th ng-repeat='title in titles'>{{title}}</th>
-            </thead>
-            <tbody>
-              <tr ng-repeat="(key, val) in searchString">
-                <td>{{ key }}</td>
-                <td ng-repeat-start='i in length' ng-if='val[i]'><i class="fa fa-check" aria-hidden="true"></i></td><td ng-repeat-end ng-if='!val[i]'>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="col-md-8">
+            <table  class ='table' ng-show='showIndex'>
+              <thead>
+                <th>Word</th>
+                <th ng-repeat='title in titles'>{{title}}</th>
+              </thead>
+              <tbody>
+                <tr ng-repeat="(key, val) in array">
+                  <td>{{ key }}</td>
+                  <td ng-repeat-start='i in length' ng-if='val[i]'><i class="fa fa-check" aria-hidden="true"></i></td><td ng-repeat-end ng-if='!val[i]'>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table  class ='table' ng-show='showSearch'>
+              <thead>
+                <th>Word</th>
+                <th ng-repeat='title in titles'>{{title}}</th>
+              </thead>
+              <tbody>
+                <tr ng-repeat="(key, val) in searchString">
+                  <td>{{ key }}</td>
+                  <td ng-repeat-start='i in length' ng-if='val[i]'><i class="fa fa-check" aria-hidden="true"></i></td><td ng-repeat-end ng-if='!val[i]'>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="col-md-4">
-				</div>
-			</div>
-      <div class="row">
-
       </div>
-		</div>
 
-
-
+    </div>
 
 	</body>
 
