@@ -53,4 +53,10 @@ app.controller('testangular', ($scope) => {
     $scope.showIndex = false;
     $scope.showSearch = true;
   };
+
+  $scope.clearSearch = () => {
+    $scope.sString = ''
+    $scope.showIndex = true;
+    $scope.showSearch = false;
+  };
 });
