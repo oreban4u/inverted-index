@@ -1,4 +1,5 @@
-/* eslint no-throw-literal: "error"*/
+/* eslint-disable no-throw-literal*/
+/* eslint-disable no-unused-vars*/
 
 /**
  * Class for Complete Inverted Index.
