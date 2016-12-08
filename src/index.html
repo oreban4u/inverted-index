@@ -41,7 +41,8 @@
         <div class="text-center center">
 
           <label class="btn btn-default btn-file">
-          	<input type="file" id="upload" accept=".json" multiple/>
+            <label ng-show='isUploaded'>File Uploaded</label>
+          	<input type="file" id="upload" accept=".json" ng-click="isUploaded = false" multiple/>
           </label>
           <button class="btn btn-default" ng-click = "uploader()">Upload File</button>
           <input class="btn btn-default" type="button" ng-click="getter()" value='Create Index'>

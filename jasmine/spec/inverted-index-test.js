@@ -34,14 +34,25 @@ describe('Populate Index', () => {
     expect(newInstance.createIndex(validFile).and[0]).toEqual(true);
   });
   it('Should confirm correct index is returned', () => {
-    expect(newInstance.getIndex().and[0]).toEqual(true);
+    expect(newInstance.getIndex().of[0]).toEqual(true);
+    expect(newInstance.getIndex().of[1]).toEqual(true);
+    expect(Object.keys(newInstance.getIndex()).length).toEqual(31);
   });
 });
 
-describe('Test Search', () => {
+describe('Search Index', () => {
+  const searchString = 'alice of fellowship';
   it('Should confirm that Search returns valid index', () => {
-    expect(newInstance.searchIndex('alice and wonderland').and[0])
+    expect(newInstance.searchIndex(searchString).alice[0])
     .toEqual(true);
+    expect(newInstance.searchIndex(searchString).of[0])
+    .toEqual(true);
+    expect(newInstance.searchIndex(searchString).of[1])
+    .toEqual(true);
+    expect(newInstance.searchIndex(searchString).fellowship[1])
+    .toEqual(true);
+    expect(Object.keys(newInstance.searchIndex(searchString).of)
+    .length).toEqual(2);
   });
   it('Should confirm that an array input is converted to string', () => {
     expect(newInstance.searchIndex(['alice', 'in', 'last']).alice[1])

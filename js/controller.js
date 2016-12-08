@@ -30,6 +30,7 @@ app.controller('testangular', ($scope) => {
   };
 
   $scope.uploader = () => {
+    $scope.isUploaded = false;
     $scope.index = new Index();
     const file = document.getElementById('upload').files[0];
     const reader = new FileReader();
@@ -46,14 +47,20 @@ app.controller('testangular', ($scope) => {
         alert(fileValidation[1]);
       }
     };
+    $scope.isUploaded = true;
   };
 
   $scope.searchy = () => {
     const qstring = $scope.sString;
     if (qstring !== undefined) {
-      $scope.searchString = $scope.index.searchIndex(qstring);
-      $scope.showIndex = false;
-      $scope.showSearch = true;
+      console.log($scope.array)
+      if ($scope.array !== undefined){
+        $scope.searchString = $scope.index.searchIndex(qstring);
+        $scope.showIndex = false;
+        $scope.showSearch = true;
+      } else {
+        alert('Index not Created')
+      }
     } else {
       alert('No Text Entered');
     }
