@@ -46,18 +46,20 @@ gulp.task('serve', () => {
       index: 'src/index.html'
     },
     port: process.env.PORT || 4000,
-    ui: false
+    ui: false,
+    ghostMode: false
   });
 });
 
 gulp.task('serveTest', () => {
   testSync.init({
     server: {
-      baseDir: './jasmine',
+      baseDir: ['./src', './jasmine'],
       index: 'SpecRunner.html'
     },
     port: 8888,
-    ui: false
+    ui: false,
+    ghostMode: false
   });
 });
 
