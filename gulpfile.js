@@ -7,16 +7,12 @@ const rename = require('gulp-rename');
 const mainSync = browserSync.create();
 const testSync = browserSync.create();
 
-gulp.task('copy', () => {
-  gulp.src('src/inverted-index.js')
-    .pipe(gulp.dest('jasmine'));
-});
 
-gulp.task('scripts', ['copy'], () => {
+gulp.task('scripts', () => {
   gulp.src('jasmine/spec/inverted-index-test.js')
     .pipe(browserify())
     .pipe(rename('bundle.js'))
-    .pipe(gulp.dest('jasmine'));
+    .pipe(gulp.dest('jasmine/testfiles'));
 });
 
 
@@ -30,7 +26,7 @@ gulp.task('watch', () => {
       'gulpfile.js'
     ],
     mainSync.reload);
-  gulp.watch(['jasmine/**/*.js', 'src/**/*.js'], testSync.reload);
+  gulp.watch(['jasmine/**/*', 'src/**/*.js'], testSync.reload);
   gulp.watch(
     [
       'src/inverted-index.js',

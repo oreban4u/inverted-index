@@ -26,14 +26,6 @@ class Index {
     for (let i = 0; i < this.book.length; i += 1) {
       const titleIndex = this.book[i].title.toLowerCase().match(/\w+/g);
       const textIndex = this.book[i].text.toLowerCase().match(/\w+/g);
-      for (let title = 0; title < titleIndex.length; title += 1) {
-        if (this.indexes[titleIndex[title]] === undefined) {
-          this.indexes[titleIndex[title]] = {};
-          this.indexes[titleIndex[title]][i] = true;
-        } else {
-          this.indexes[titleIndex[title]][i] = true;
-        }
-      }
       for (let text = 0; text < textIndex.length; text += 1) {
         if (this.indexes[textIndex[text]] === undefined) {
           this.indexes[textIndex[text]] = {};
@@ -92,12 +84,12 @@ class Index {
           check = true;
         }
       });
-      if (check) throw 'Invalid Content';
+      if (check) {
+        throw 'Invalid Content';
+      }
       return [true, 'success'];
     } catch (err) {
-      if (err === 'Empty File') {
-        return [false, 'Empty File Please Upload a Valid Json File'];
-      } else if (err.name === 'SyntaxError') {
+      if (err.name === 'SyntaxError') {
         return [false, 'Invalid JSON file'];
       } else if (err === 'Invalid Content') {
         return [false, err];
