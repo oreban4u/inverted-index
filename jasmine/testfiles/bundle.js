@@ -4,7 +4,7 @@
 const emptyFile = require('../testfiles/empty.json');
 const wrongKeyBook = require('../testfiles/wrongstructure.json');
 const validFile = require('../testfiles/books.json');
-const wrongFile = require('../testfiles/wrongfile.json')
+const wrongFile = require('../testfiles/wrongfile.json');
 
 const testInvertedIndex = new Index();
 

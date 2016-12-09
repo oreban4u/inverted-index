@@ -1,4 +1,3 @@
-/* eslint-disable no-throw-literal*/
 /* eslint-disable no-unused-vars*/
 
 /**
@@ -24,7 +23,6 @@ class Index {
   createIndex(book) {
     this.book = book;
     for (let i = 0; i < this.book.length; i += 1) {
-      const titleIndex = this.book[i].title.toLowerCase().match(/\w+/g);
       const textIndex = this.book[i].text.toLowerCase().match(/\w+/g);
       for (let text = 0; text < textIndex.length; text += 1) {
         if (this.indexes[textIndex[text]] === undefined) {
@@ -40,7 +38,7 @@ class Index {
 
   /**
   * A method to Get Index of Created Index.
-  * @return {Object} Returns an Object containging the Created Index.
+  * @return {Object} Returns an Object containing the Created Index.
   */
   getIndex() {
     return this.indexes;
@@ -85,13 +83,14 @@ class Index {
         }
       });
       if (check) {
-        throw 'Invalid Content';
+        const error = new Error('Invalid Content');
+        throw error;
       }
       return [true, 'success'];
     } catch (err) {
       if (err.name === 'SyntaxError') {
         return [false, 'Invalid JSON file'];
-      } else if (err === 'Invalid Content') {
+      } else if (err.message === 'Invalid Content') {
         return [false, err];
       }
       return [false, 'Invalid Content'];
