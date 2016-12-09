@@ -91,7 +91,7 @@ class Index {
       if (err.name === 'SyntaxError') {
         return [false, 'Invalid JSON file'];
       } else if (err.message === 'Invalid Content') {
-        return [false, err];
+        return [false, err.message];
       }
       return [false, 'Invalid Content'];
     }
