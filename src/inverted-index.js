@@ -1,97 +1,99 @@
+/* eslint-disable no-unused-vars*/
+
+/**
+ * Class for Complete Inverted Index.
+ * @class
+ */
 class Index {
-	
-	constructor(bookNo){
-		this.bookNo =bookNo;
-		this.indexes = {}
-		this.book = [
-					  {
-					    "title": "Alice in Wonderland",
-					    "text": "Alice falls into a rabbit hole and enters a world full of imagination."
-					  },
-					
-					  {
-					    "title": "The Lord of the Rings: The Fellowship of the Ring.",
-					    "text": "An unusual alliance of man, elf, dwarf, wizard and hobbit seek to destroy a powerful ring."
-					  }
-					];
-		
-		
-	}
-	
-	//createIndex(filepath){
-	createIndex(){
-		
-		for (let i=0; i< this.book.length; i++){
-			//let text = /\S+\s\S+/[Symbol.match](this.book[i].text);
-			
-			//let index = [];
-			//console.log(text)
-			let titleIndex = this.book[i].title.split(' ');
-			let textIndex = this.book[i].text.split(' ');
-			
-			for (let item in titleIndex){
-				titleIndex[item] = /[A-Za-z0-9]+/[Symbol.match](titleIndex[item])[0];
-				titleIndex[item] = titleIndex[item].toLowerCase();
-				//if (index.indexOf(titleIndex[item]) === -1){
-				if (this.indexes[titleIndex[item]] === undefined){
-					//index.push(titleIndex[item]);
-					this.indexes[titleIndex[item]] = {}
-					this.indexes[titleIndex[item]][i] = true;
-				//console.log(titleIndex[item]);
-				}
-				else{
-					this.indexes[titleIndex[item]][i] = true;
-				}
-			}
-			for (let item in textIndex){
-				textIndex[item] = /[A-Za-z0-9]+/[Symbol.match](textIndex[item])[0];
-				textIndex[item] = textIndex[item].toLowerCase();
-				//if (index.indexOf(textIndex[item]) === -1){
-				if (this.indexes[textIndex[item]] === undefined){
-					//index.push(textIndex[item]);
-					this.indexes[textIndex[item]] = {};
-					this.indexes[textIndex[item]][i] = true;
-				//console.log(titleIndex[item]);
-				}
-				else{
-					this.indexes[textIndex[item]][i] = true;
-				}
-			}
-			//console.log(index);
-			//this.indexes[this.bookNo+'Obj'+i]= index;
-		}
-		return this.indexes;
-		
-	}
-	
-	
-	getIndex(){
-		let indexlist = [];
-		for (let item in this.indexes){
-			indexlist.push([item, this.indexes[item]]);
-			
-		}
-		this.indexlist = indexlist.sort();
-		return this.indexlist;
-	}
-	
-	searchIndex(terms){
-		let result = []
-		terms = terms.toLowerCase();
-		terms = terms.split(' ');
-		console.log(terms);
-		for (let sItem in terms){
-			if (this.indexes[terms[sItem]] !== undefined){
-				result.push([sItem, this.indexes[terms[sItem]]])
-			}
-		}
-	}
-	
+  /**
+  * Defined all Variables to be used.
+  * @constructor
+  */
+  constructor() {
+    this.indexes = {};
+    this.book = [];
+    this.vbook = [];
+  }
+
+  /**
+  * A method to Create Index of Uploaded File.
+  * @param {Object} book
+  * @return {Object} Returns an Object containing the created Index.
+  */
+  createIndex(book) {
+    this.book = book;
+    for (let i = 0; i < this.book.length; i += 1) {
+      const textIndex = this.book[i].text.toLowerCase().match(/\w+/g);
+      for (let text = 0; text < textIndex.length; text += 1) {
+        if (this.indexes[textIndex[text]] === undefined) {
+          this.indexes[textIndex[text]] = {};
+          this.indexes[textIndex[text]][i] = true;
+        } else {
+          this.indexes[textIndex[text]][i] = true;
+        }
+      }
+    }
+    return this.indexes;
+  }
+
+  /**
+  * A method to Get Index of Created Index.
+  * @return {Object} Returns an Object containing the Created Index.
+  */
+  getIndex() {
+    return this.indexes;
+  }
+
+  /**
+  * A method to Search Given String in Created Index.
+  * @param {String} terms
+  * @return {Object} An Object Containing the Various words and their Locations.
+  */
+  searchIndex(terms) {
+    if (typeof terms === typeof []) {
+      terms = terms.join();
+    }
+    const result = {};
+    terms = terms.toLowerCase();
+    terms = terms.match(/\w+/g);
+    terms.forEach((sItem) => {
+      if (this.indexes[sItem] !== undefined) {
+        result[sItem] = this.indexes[sItem];
+      } else {
+        result[sItem] = { 0: false };
+      }
+    });
+    return result;
+  }
+  /**
+  * A method to Validate Uploaded File.
+  * @param {String} file
+  * @return {Array} Array Containing Boolean and message sent to Controller
+  */
+  validateFile(file) {
+    try {
+      if (file === '""' || file === '') {
+        return [false, 'Empty File Please Upload a Valid Json File'];
+      }
+      this.vbook = JSON.parse(file);
+      let check = false;
+      this.vbook.forEach((item) => {
+        if (item.text === undefined || item.title === undefined) {
+          check = true;
+        }
+      });
+      if (check) {
+        const error = new Error('Invalid Content');
+        throw error;
+      }
+      return [true, 'success'];
+    } catch (err) {
+      if (err.name === 'SyntaxError') {
+        return [false, 'Invalid JSON file'];
+      } else if (err.message === 'Invalid Content') {
+        return [false, err.message];
+      }
+      return [false, 'Invalid Content'];
+    }
+  }
 }
-
-var no1 = new Index('upload1');
-
-//console.log(no1.testFunction());
-// console.log(no1.createIndex());
-// console.log(no1.getIndex());
-// no1.searchIndex('alice fellowship and');
