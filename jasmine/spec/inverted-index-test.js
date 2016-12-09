@@ -7,7 +7,7 @@ const wrongFile = require('../testfiles/wrongfile.json');
 
 const testInvertedIndex = new Index();
 
-// tests file
+// tests filecommit
 describe('Read Book Data', () => {
   it('Should return \'true\' for Valid JSON file', () => {
     expect(testInvertedIndex.validateFile(JSON.stringify(validFile))[0])
