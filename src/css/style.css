@@ -5,3 +5,8 @@
 .searchbox{
   width: 50%;
 }
+.the-table {
+    table-layout: fixed;
+    word-wrap: break-word;
+    white-space: normal;
+}

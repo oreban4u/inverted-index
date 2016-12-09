@@ -23,10 +23,13 @@ app.controller('testangular', ($scope) => {
   };
   const titlesList = (n) => {
     const arr = [];
-    for (let i = 0; i < n; i += 1) {
-      arr.push(`Book ${i}`);
-    }
+    const book = $scope.index.vbook;
+    book.forEach ((bookTitle) => {
+      arr.push(bookTitle.title);
+    });
+    console.log(arr);
     return arr;
+
   };
 
   $scope.uploader = () => {
