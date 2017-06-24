@@ -1,4 +1,5 @@
-[![Coverage Status](https://coveralls.io/repos/github/andela-obanwo/inverted-index/badge.svg?branch=develop)](https://coveralls.io/github/andela-obanwo/inverted-index?branch=develop) [![Build Status](https://travis-ci.org/andela-obanwo/inverted-index.svg?branch=develop)](https://travis-ci.org/andela-obanwo/inverted-index)
+[![Code Climate](https://codeclimate.com/github/andela-obanwo/inverted-index/badges/gpa.svg)](https://codeclimate.com/github/andela-obanwo/inverted-index)
+[![Coverage Status](https://coveralls.io/repos/github/andela-obanwo/inverted-index/badge.svg)](https://coveralls.io/github/andela-obanwo/inverted-index) [![Build Status](https://travis-ci.org/andela-obanwo/inverted-index.svg)](https://travis-ci.org/andela-obanwo/inverted-index)
 
 ## Inverted-Index
 An application that creates an Index from a JSON array of one or more text objects and  allows you search for words in the created Index.
